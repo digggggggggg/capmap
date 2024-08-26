@@ -1,0 +1,70 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    env:
+      PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
+      GCP_REGION: ${{ secrets.GCP_REGION }}
+      FRONTEND_IMAGE: gcr.io/${{ secrets.GCP_PROJECT_ID }}/frontend
+      BACKEND_IMAGE: gcr.io/${{ secrets.GCP_PROJECT_ID }}/backend
+
+    steps:
+    - name: Verify Docker installation
+      run: docker --version
+
+        # Checkout the code
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    # Authenticate with Google Cloud
+    - name: Set up Google Cloud SDK
+      uses: google-github-actions/auth@v2
+      with:
+        project_id: ${{ secrets.GCP_PROJECT_ID }}
+        credentials_json: ${{ secrets.GCP_CREDENTIALS }}
+
+    # Set up Google Cloud SDK
+    - name: Set up Google Cloud SDK
+      uses: google-github-actions/setup-gcloud@v1
+      with:
+        project_id: ${{ secrets.GCP_PROJECT_ID }}
+
+    # Configure Docker and GCLoud
+    - name: Docker build and push frontend
+      run: gcloud auth configure-docker
+      
+    # Docker build and push frontend
+    - name: Build and push frontend docker image
+      uses: docker/build-push-action@v5
+      with:
+        context: ./frontend
+        push: true
+        tags: gcr.io/${{ secrets.GCP_PROJECT_ID }}/frontend:latest
+
+    # Docker build and push backend
+    - name: Build and push backend docker image
+      uses: docker/build-push-action@v5
+      with:
+        context: ./backend
+        push: true
+        tags: gcr.io/${{ secrets.GCP_PROJECT_ID }}/backend:latest
+
+#    # Terraform Init
+#    - name: Terraform Init
+#      working-directory: ./terraform
+#      run: terraform init
+#
+#    # Terraform Apply
+#    - name: Terraform Apply
+#      working-directory: ./terraform
+#      run: |
+#        terraform apply -auto-approve \
+#          -var "frontend_image=gcr.io/${{ secrets.GCP_PROJECT_ID }}/frontend" \
+#          -var "backend_image=gcr.io/${{ secrets.GCP_PROJECT_ID }}/backend"

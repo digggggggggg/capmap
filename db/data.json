@@ -1,0 +1,37 @@
+[
+    {
+        "id": "ASSET-X8734",
+        "latitude": 51.52466903333144,
+        "longitude": -0.08320212364196779,
+        "totalCapacity": 100,
+        "usedCapacity": 70
+    },
+    {
+        "id": "ASSET-Z4784",
+        "latitude": 51.523641015718525,
+        "longitude": -0.08601307868957521,
+        "totalCapacity": 100,
+        "usedCapacity": 10
+    },
+    {
+        "id": "ASSET-N2837",
+        "latitude": 51.523434943212514,
+        "longitude": -0.08114755153656007,
+        "totalCapacity": 100,
+        "usedCapacity": 40
+    },
+    {
+        "id": "ASSET-V9345",
+        "latitude": 51.52211691871454,
+        "longitude": -0.0851869583129883,
+        "totalCapacity": 100,
+        "usedCapacity": 30
+    },
+    {
+        "id": "ASSET-Q9547",
+        "latitude": 51.523304662537235,
+        "longitude": -0.08331477642059326,
+        "totalCapacity": 100,
+        "usedCapacity": 70
+    }
+]

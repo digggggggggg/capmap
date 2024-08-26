@@ -1,0 +1,13 @@
+node_modules
+.env
+.secrets
+.vscode
+build
+
+# Ignore generated credentials from google-github-actions/auth
+gha-creds-*.json
+
+terraform.tfstate*
+terraform.tfvars*
+.terraform
+/dworks*.json

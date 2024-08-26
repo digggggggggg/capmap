@@ -1,0 +1,15 @@
+{
+  "name": "capmap",
+  "version": "1.0.0",
+  "description": "## Backend We have provided a bootstrapped node/express app, but you're welcome to change this or use any framework of your choice if you would prefer.",
+  "main": "index.js",
+  "scripts": {
+    "tf": "cd terraform && terraform apply"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@work:diegoaltoworks/capmap.git"
+  },
+  "author": "",
+  "license": "ISC"
+}
